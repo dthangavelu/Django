@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Word Generator</title>
+	<meta charset="UTF-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'current_time/css/style.css'%}">	
+</head>
+<body>
+	<h3>Random Word (attempt #{{ request.session.attempt_counter }})</h3>
+	<div><h1> {{ word }} </h1></div>
+	<form action="/" method="get">
+		{% csrf_token %}
+		<button>Generate</button>
+	</form>
+	<form action="random_word/reset" method="get">
+		{% csrf_token %}
+		<button>Reset</button>
+	</form>
+</body>
+</html>
