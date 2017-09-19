@@ -1,0 +1,15 @@
+body{
+	padding: 75px;	
+}
+
+div{
+	padding: 10px;
+	position: absolute;
+	margin-left: 420px;
+	border: solid 2px black;
+	width: 350px;
+}
+
+h1, h3{
+	text-align: center;
+}
