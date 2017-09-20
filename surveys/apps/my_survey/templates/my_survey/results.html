@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'my_survey/css/style.css'%}">
+</head>
+<body> 
+	<div><span class="title">Thank you for submitting this form! You have submitted this form {{ request.session.count }} time(s) now!!!</span></div>
+	<div class="container">
+	  <h3>Submitted Information</h3>
+	  <div class="well">		
+		<label>Name:</label><span> {{ name }} </span></label><br>
+		<label>Bootcamp Locations:</label><span> {{ location }} </span></label><br>
+		<label>Favorite Language:</label><span> {{ fav_lang }} </span></label><br>
+		<label>Comment:</label><span> {{ comment }} </span></label><br>
+		<form action="/">
+			<button type="submit" class="btn btn-default">Go Back</button>
+		</form>
+	  </div>
+	</div>
+
+</body>
+</html>

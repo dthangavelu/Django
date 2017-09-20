@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">	
+</head>
+<body>
+	<div class="container">
+		<h2>Aamadon Store</h2>
+		<!--<form action="buy" method="post">-->
+		<!--{% csrf_token %}		  -->
+			<table>
+				<tr>
+					<th>Item</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Action</th>
+				</tr>
+				<form action="buy" method="post">
+				{% csrf_token %}
+				<tr>
+					<td>T-Shirt</td>
+					<td>19.99</td>
+					<td>
+						<select name="qty" id="select_qty">		
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</td>						 
+					<td>
+					<input type='hidden' name='product_id' value='1' />
+					<input type="submit" value="Buy">
+					</td>
+				</tr>	
+				</form> 
+				
+				<form action="buy" method="post">
+				{% csrf_token %}
+				<tr>
+					<td>Sweater</td>
+					<td>29.99</td>
+					<td>
+						<select name="qty" id="select_qty">		
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</td>						
+					<td>
+					<input type='hidden' name='product_id' value='2' />
+					<input type="submit" value="Buy">
+					</td>
+				</tr>
+				</form> 
+				
+				<form action="buy" method="post">
+				{% csrf_token %}
+				<tr>
+					<td>Cup</td>
+					<td>4.99</td>
+					<td>
+						<select name="qty" id="select_qty">		
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</td>						
+					<td>
+					<input type='hidden' name='product_id' value='3' />
+					<input type="submit" value="Buy">
+					</td>
+				</tr>
+				</form> 
+				
+				<form action="buy" method="post">
+				{% csrf_token %}
+				<tr>
+					<td>Algorithm Book</td>
+					<td>49.99</td>
+					<td>
+						<select name="qty" id="select_qty">		
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+						</select>
+					</td>						
+					<td>
+					<input type='hidden' name='product_id' value='4' />
+					<input type="submit" value="Buy">
+					</td>
+				</tr>
+				</form> 
+			</table>
+		<!--</form> -->
+	</div>	
+</body>
+</html>

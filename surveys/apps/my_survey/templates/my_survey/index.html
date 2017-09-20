@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'my_survey/css/style.css'%}">
+</head>
+<body>
+	<div class="container">
+		<h2>Please fill out the survey form</h2>
+		<form class="form-horizontal" action="results" method="post">
+			<div class="form-group">
+				{% csrf_token %}				
+				<input type="text" class="form-control" id="user_name" placeholder="Enter your name" name="user_name" />				
+				<br>
+				<select name="fav_lang" id="fav_lang">
+					<option value="HTML">HTML</option>
+					<option value="CSS">CSS</option>
+					<option value="JavaScript">JavaScript</option>
+					<option value="Python">Python</option>
+					<option value="Java">Java</option>
+					<option value="MEAN">MEAN</option>
+				 </select>
+				 <br><br>
+				<select name="location" id="location">
+					<option value="Americas">Americas</option>
+					<option value="Europe">Europe</option>
+					<option value="Africa">Africa</option>
+					<option value="Chicago">Chicago</option>
+					<option value="Melbourne">Melbourne</option>
+					<option value="China">China</option>
+				 </select>		
+				<br><br>
+		   <!--<div class="form-group">-->
+				<label for="comment">Comment (optional):</label>
+				<textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

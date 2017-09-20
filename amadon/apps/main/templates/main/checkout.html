@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">	
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">	
+</head>
+<body>
+	<div class="container">
+		<h2>Thank you for your business!</h2>
+		<p>We charged your credit card for {{ request.session.single_order_price }}</p>
+		<br>
+		<p>You have ordered {{ request.session.item_count }} items so far and spent {{ request.session.total_price }} with Amadon.com!</p>
+		<form action="/">
+			<input type="submit" value="Go Back">
+		</form>
+	</div>	
+</body>
+</html>

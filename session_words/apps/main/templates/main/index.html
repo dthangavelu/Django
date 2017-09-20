@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'my_survey/css/style.css'%}">
+</head>
+<body>
+	<div class="container">
+		<h2>Add a new word</h2>
+		<form action="add_word" method="post">
+		{% csrf_token %}		  
+		  <input type="text" name="word" id="word" placeholder="Enter a word">
+		  <br><br>
+		  <h3>Choose color</h3>		  
+		  <input type="radio" name="color" id="color" value="red"> Red<br>
+		  <input type="radio" name="color" id="color" value="green"> Green<br>
+		  <input type="radio" name="color" id="color" value="blue"> Blue<br>		  
+		  <input type="checkbox" name="big_font" id="big_font"> show in BIG fonts!<br>
+		  <br>
+		  <input type="submit" value="Add to Session">
+		</form> 
+	</div>
+	<br><hr><br>
+	<div class="display">
+		<form action="clear_session" method="post">
+		{% csrf_token %}		  
+			<input type="submit" value="Clear Session"><br><br>
+			{% for items in request.session.saved_session %}				
+				{% if items.font_size_to_display == "25" %}					
+					<font size="25" color={{ items.color_to_display }}> {{ items.word_to_display }} </font> - added on {{ items.time_to_display }}<br>
+				{% else %}
+					<font size="6" color={{ items.color_to_display }}> {{ items.word_to_display }} </font> - added on {{ items.time_to_display }}<br>					
+				{% endif %}		
+			{% endfor %}
+		</form>
+	</div>
+</body>
+</html>
