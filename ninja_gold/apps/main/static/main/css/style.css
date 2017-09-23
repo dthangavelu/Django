@@ -1,0 +1,31 @@
+
+body{
+	padding: 50px;
+}
+label{
+	font-weight: bold;
+}
+.gold_count {
+  width:200px;
+  display: inline-block;
+  font-weight: bold;
+  border: solid 1px grey;
+}
+
+.building{
+	display: flex;
+}
+
+.farm, .cave, .house, .casino{
+	width: 25%;
+	margin: 25px;
+	padding: 10px;	
+	border: solid 1px grey;
+	text-align: center;		
+}
+
+.activities{
+	width: 100%;
+	padding: 10px;
+	border: solid 1px grey;
+}

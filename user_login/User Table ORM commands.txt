@@ -1,0 +1,63 @@
+
+Migrating DB
+------------
+(djangoEnv) E:\Coding_Dojo\Assignments\Python\Django\assignments\user_login>python manage.py makemigrations
+No changes detected
+(djangoEnv) E:\Coding_Dojo\Assignments\Python\Django\assignments\user_login>python manage.py migrate
+
+Import datetime
+---------------
+from datetime import datetime
+>>> User.objects.create(first_name="Bob", last_name="Jones", email="test@test.com", age=34, created_at=datetime.now(), updated_at=datetime.now())
+<User: User object>
+
+Select all users in db
+------------------------
+>>> User.objects.all()
+<QuerySet [<User: User object>]>
+
+Select last user from db
+------------------------
+>>> User.objects.last()
+<User: User object>
+
+Create users 
+------------
+>>> User.objects.create(first_name="Indiana", last_name="Jones", email="test@test.com", age=24, created_at=datetime.now(), updated_at=datetime.now())
+<User: User object>
+>>> User.objects.create(first_name="Billy", last_name="Bob", email="test@test.com", age=24, created_at=datetime.now(), updated_at=datetime.now())
+<User: User object>
+
+Get the first user
+------------------------
+>>> User.objects.first()
+<User: User object>
+
+Order by first name desc
+------------------------
+>>> User.objects.order_by("-first_name")
+<QuerySet [
+fn: Indiana ln: Jones email: test@test.com age: 24 created_at: 2017-09-21 15:33:34.787000+00:00 updated_at: 2017-09-21 15:33:34.787000+00:00
+,
+fn: Bob ln: Jones email: test@test.com age: 34 created_at: 2017-09-21 15:29:51.206000+00:00 updated_at: 2017-09-21 15:29:51.206000+00:00
+,
+fn: Billy ln: Bob email: test@test.com age: 24 created_at: 2017-09-21 15:33:56.692000+00:00 updated_at: 2017-09-21 15:33:56.692000+00:00
+]>
+
+Update last_name whose user id is 3
+------------------------------------
+>>> u = User.objects.get(id=3)
+>>> print u
+User object
+>>> u.last_name
+u'Bob'
+>>> u.last_name = "Bobby"
+>>> u.save()
+
+
+Delete user with id 4
+------------------------
+>>> u = User.objects.get(id=4)
+>>> u.delete()
+(1, {u'main.User': 1})
+

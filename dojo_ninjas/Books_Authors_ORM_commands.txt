@@ -1,0 +1,124 @@
+
+Insert data to books
+----------------------
+
+>>> Book.objects.create(name="C Sharp", desc="c sharp", created_at=datetime.now())
+>>> Book.objects.create(name="Java", desc="java desc", created_at=datetime.now())
+>>> Book.objects.create(name="Python", desc="", created_at=datetime.now())
+>>> Book.objects.create(name="Ruby", desc="ruby desc", created_at=datetime.now())
+>>> Book.objects.create(name="PHP", desc="php desc", created_at=datetime.now())
+
+Insert data to authors
+-----------------------
+
+Author.objects.create(first_name="Mike", last_name="Sam", email="mSam@test.com", created_at=datetime.now())
+Author.objects.create(first_name="Spensors", last_name="Jonas", email="sJonas@test.com", created_at=datetime.now())
+Author.objects.create(first_name="John", last_name="Deer", email="jDeer@test.com", created_at=datetime.now())
+Author.objects.create(first_name="Jadee", last_name="roller", email="jRoller@test.com", created_at=datetime.now())
+Author.objects.create(first_name="Jay", last_name="Patel", email="jPatel@test.com", created_at=datetime.now())
+
+Add new field called notes to authors table
+--------------------------------------------
+notes = models.TextField(null=True)
+
+Change the name of 5th book
+----------------------------
+
+>>> a = Book.objects.get(id=5)
+>>> a.name="C#"
+>>> a.desc="c# desc"
+>>> a.save()
+
+change the name of 5th author to ketul
+-------------------------------------
+>>> a = Author.objects.get(id=5)
+>>> a.first_name="Ketul"
+>>> a.save()
+
+Assign the first author to the first 2 books
+---------------------------------------------
+auth = Author.objects.get(id=1)
+b = Book.objects.get(id=1)
+auth.books.add(b)
+b = Book.objects.get(id=2)
+auth.books.add(b)
+
+Assign the second author to the first 3 books
+---------------------------------------------
+auth = Author.objects.get(id=2)
+b = Book.objects.get(id=1)
+auth.books.add(b)
+b = Book.objects.get(id=2)
+auth.books.add(b)
+b = Book.objects.get(id=3)
+auth.books.add(b)
+
+Assign the third author to the first 4 books
+---------------------------------------------
+auth = Author.objects.get(id=3)
+b = Book.objects.get(id=1)
+auth.books.add(b)
+b = Book.objects.get(id=2)
+auth.books.add(b)
+b = Book.objects.get(id=3)
+auth.books.add(b)
+b = Book.objects.get(id=4)
+auth.books.add(b)
+
+Assign the fourth author to the first 5 books
+---------------------------------------------
+auth = Author.objects.get(id=4)
+b = Book.objects.get(id=1)
+auth.books.add(b)
+b = Book.objects.get(id=2)
+auth.books.add(b)
+b = Book.objects.get(id=3)
+auth.books.add(b)
+b = Book.objects.get(id=4)
+auth.books.add(b)
+b = Book.objects.get(id=5)
+auth.books.add(b)
+
+For the 3rd book, retrieve all the authors
+---------------------------------------------
+>>> from django.db import connection
+>>> cursor = connection.cursor()
+>>> cursor.execute('''select first_name, last_name from book_authors_author Join book_authors_author_books on book_authors_author_books.author_id = book_authors_author.id where book_authors_author_books.book_id = 3''')
+>>> rows = cursor.fetchall()
+>>> print rows
+
+For the 3rd book, remove the first author
+---------------------------------------------
+>>> from django.db import connection
+>>> cursor = connection.cursor()
+>>> cursor.execute('''delete from book_authors_author_books where book_authors_author_books.book_id=3 and book_authors_author_books.author_id=3''')
+<django.db.backends.sqlite3.base.SQLiteCursorWrapper object at 0x000000000426D9D8>
+>>> rows = cursor.fetchall()
+>>> print rows
+
+For the 2nd book, add the 5th author as one of the authors
+---------------------------------------------------------------
+auth = Author.objects.get(id=5)
+b = Book.objects.get(id=2)
+auth.books.add(b)
+
+Find all the books that the 3rd author is part of
+-------------------------------------------------
+>>> from django.db import connection
+>>> cursor = connection.cursor()
+>>> cursor.execute('''select book_authors_book.name from book_authors_book join book_authors_author_books on book_authors_book.id = book_authors_author_books.book_id where book_authors_author_books.author_id=3''')
+<django.db.backends.sqlite3.base.SQLiteCursorWrapper object at 0x000000000426D9D8>
+>>> rows = cursor.fetchall()
+>>> print rows
+[(u'C Sharp',), (u'Java',), (u'Python',), (u'PHP',)]
+
+Find all the books that the 2nd author is part of
+-------------------------------------------------
+>>> from django.db import connection
+>>> cursor = connection.cursor()
+>>> cursor.execute('''select book_authors_book.name from book_authors_book join book_authors_author_books on book_authors_book.id = book_authors_author_books.book_id where book_authors_author_books.author_id=2''')
+<django.db.backends.sqlite3.base.SQLiteCursorWrapper object at 0x000000000426D9D
+>>> rows = cursor.fetchall()
+>>> print rows
+[(u'C Sharp',), (u'Java',)]
+

@@ -1,0 +1,23 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add New User</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">	
+</head>
+<body>  
+    <div class="container">			
+		<h2>User {{ user.id }}</h2>
+		<label>Full Name:</label> {{ user.first_name }} {{ user.last_name }}<br>
+		<label>Email:</label> {{ user.email }} <br>
+		<label>Created At:</label> {{ user.created_at }}<br><br>
+		<a href="/users">Go Back</a> | <a href="/users/{{ user.id }}/edit">Edit</a> | <a href="/users/{{ user.id }}/destroy">Delete</a>
+	</div>
+</body>
+</html>
