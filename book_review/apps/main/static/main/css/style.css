@@ -1,0 +1,30 @@
+
+
+.main, .main_review{
+	display: flex;
+	margin: 15px;
+	width: 75%;
+}
+
+.recent_bk_review, .all_reviews{
+	margin: 10px;
+	width: 350px;
+}
+
+.all_bk_review, .add_review{
+	margin: 10px;
+	padding: 10px;
+	border: solid 1px black;
+	width: 400px;
+}
+
+ .add_review{
+	margin: 10px;
+	padding: 10px;	
+	width: 400px;
+
+
+textarea
+{
+    overflow-y:scroll;
+}

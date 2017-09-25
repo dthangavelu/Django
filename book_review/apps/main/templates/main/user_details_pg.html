@@ -1,0 +1,36 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Main</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">	
+	<script src="{% static 'main/js/script.js' %}"></script>
+	<script type="text/javascript">
+		document.getElementById("all_bk_review").contentEditable='true'; 
+	</script>
+</head>
+<body> 
+	<div class="container">	  
+		<!--<br><a href="/books">Home</a> | <a href="/books/add_book_review/">Add a Book and Review</a> | <a href="/logout">Logout</a>-->
+		<br><a href="/books">Home</a> | <a href="/books/add">Add a Book and Review</a> | <a href="/logout">Logout</a><br>
+		<h2><span class="label label-default">User Name: {{ user_data.0.0 }}</span></h2>
+		<h3><label>Email:</label> {{ user_data.0.1 }}</h3>
+		<h3><label>Total Reviews: </label> {{ review_count.0.0 }}</h3>
+		<div class="main">			
+			
+			<div class="all_bk_review">
+				<h4>Posted Reviews on the following books</h4>
+				{% for book in reviewed_books %}				
+				<p><a href="/books/details/{{ book.1 }}">{{ book.0 }}</a></p>		
+				{% endfor %}
+			</div>
+		</div>
+	</div>	
+</body>
+</html>

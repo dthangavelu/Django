@@ -1,0 +1,70 @@
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'main/css/style.css'%}">	
+	
+	<script>
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+		 if(dd<10){
+				dd='0'+dd
+			} 
+			if(mm<10){
+				mm='0'+mm
+			} 
+
+		today = yyyy+'-'+mm+'-'+dd;
+		document.getElementById("start_date").setAttribute("min", today);
+		document.getElementById("end_date").setAttribute("min", today);
+	</script>
+</head>
+<body> 
+    <div class="container">		
+		{% if messages %}			
+			{% for message in messages %}
+				<label><font color="red">{{ message }}</font></label>
+			{% endfor %}			
+		{% endif %}
+		<br>
+		<a href="/travels/main_dashboard">Home</a> | <a href="/logout">Logout</a>
+		<br>
+		<h2>Add a Trip</h2>
+		<form action='/travels/add_trip' method='post'>
+		{% csrf_token %}
+			<div class="form-group">
+				<label for="destination">Destination: <input type="text" class="form-control" id="destination" placeholder="Enter destination" name="destination" required></label><br>						
+				<label for="desc">Description: <input type="text" class="form-control" id="desc" placeholder="Enter description" name="desc" required></label><br>
+				<label for="start_date">Travel Date From: <input type="date" class="form-control" id="start_date" name="start_date" min='' required></label><br>
+				<label for="end_date">Travel Date To: <input type="date" class="form-control" id="end_date" name="end_date" min =''required></label><br>
+				<button type="submit" class="btn btn-default">Add</button>
+			<div class="form-group">
+		</form>
+		<script>
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			 if(dd<10){
+					dd='0'+dd
+				} 
+				if(mm<10){
+					mm='0'+mm
+				} 
+
+			today = yyyy+'-'+mm+'-'+dd;
+			document.getElementById("start_date").setAttribute("min", today);
+			document.getElementById("end_date").setAttribute("min", today);
+		</script>		
+	</div>
+</body>
+</html>
